@@ -717,6 +717,15 @@
           </div>
         </section>
         <!-- - section TESTIMONIALS -->
+
+
+
+
+
+
+
+
+        
         <!-- section CONTENT #2 -->
         <section class="section section-content clearfix pt-medium pb-small text-center"
           data-arts-os-animation="data-arts-os-animation">
@@ -833,6 +842,10 @@
       </main>
 
 
+
+
+
+
       <!-- ///////////////////////////////////////////////////////////// PAGE FOOTER ///////////////////////////////////////////////////////////// -->
       <footer class="footer container-fluid" id="page-footer" data-arts-theme-text="dark"
         data-arts-footer-logo="primary">
@@ -843,7 +856,7 @@
             <div class="col-lg-5">
               <section class="widget widget_rhye_cta">
                 <!-- header -->
-                <h2 class="h3 mt-0 mb-0-5">Ready to find the perfect candidate?</h2>
+                <h2 class="h3 mt-0 mb-0-5">Ready to find the <br>perfect candidate?</h2>
                 <!-- - header -->
                 <!-- button --><a class="button button_solid button_black mb-0-5" data-hover="Get in Touch"
                   href="page-inner-contacts-1.html"><span class="button__label-hover">Get in Touch</span></a>
@@ -861,9 +874,18 @@
                     <!-- - header -->
                     <!-- content -->
                     <ul class="menu js-menu">
-                      <li><a href="#">About</a>
+                      <li><a href="about.html">About</a>
                       </li>
-                      <li><a href="#">Services</a>
+                      
+                      <li><a href="sectors.html">Sectors</a>
+                      </li>
+                      <li><a href="why-nila.html">Why Nila</a>
+                      </li>
+                      <li><a href="blog.html">News</a>
+                      </li>
+                      <li><a href="roles.html">Roles</a>
+                      </li>
+                      <li><a href="contact.html">Contact</a>
                       </li>
 
 
@@ -886,17 +908,17 @@
                       <li><a href="education.html"> Education
                         </a>
                       </li>
-                      <li><a href="">Finance </a>
+                      <li><a href="finance.html">Finance </a>
                       </li>
-                      <li><a href="#">Human Resources</a>
+                      <li><a href="hr.html">Human Resources</a>
                       </li>
-                      <li><a href="#">Construction
+                      <li><a href="construction.html">Construction
                         </a>
                       </li>
-                      <li><a href="#">Energy
+                      <li><a href="energy.html">Energy
                         </a>
                       </li>
-                      <li><a href="#">
+                      <li><a href="property.html">
                           Real Estate & Property</a>
                       </li>
                     </ul>
@@ -1059,108 +1081,108 @@
   <!-- - PhotoSwipe -->
   <!-- List Hover Shaders -->
   <script id="list-hover-vs" type="x-shader/x-vertex">
-    uniform vec2 uOffset;
-    
-    varying vec2 vUv;
-    
-    vec3 deformationCurve(vec3 position, vec2 uv, vec2 offset) {
-      float M_PI = 3.1415926535897932384626433832795;
-      position.x = position.x + (sin(uv.y * M_PI) * offset.x);
-      position.y = position.y + (sin(uv.x * M_PI) * offset.y);
-      return position;
-    }
-    
-    void main() {
-      vUv =  uv + (uOffset * 2.);
-      vec3 newPosition = position;
-      newPosition = deformationCurve(position,uv,uOffset);
-      gl_Position = projectionMatrix * modelViewMatrix * vec4( newPosition, 1.0 );
-    }
-  </script>
+      uniform vec2 uOffset;
+      
+      varying vec2 vUv;
+      
+      vec3 deformationCurve(vec3 position, vec2 uv, vec2 offset) {
+        float M_PI = 3.1415926535897932384626433832795;
+        position.x = position.x + (sin(uv.y * M_PI) * offset.x);
+        position.y = position.y + (sin(uv.x * M_PI) * offset.y);
+        return position;
+      }
+      
+      void main() {
+        vUv =  uv + (uOffset * 2.);
+        vec3 newPosition = position;
+        newPosition = deformationCurve(position,uv,uOffset);
+        gl_Position = projectionMatrix * modelViewMatrix * vec4( newPosition, 1.0 );
+      }
+    </script>
   <script id="list-hover-fs" type="x-shader/x-fragment">
-    uniform sampler2D uTexture;
-    uniform float uAlpha;
-    uniform float uScale;
-    
-    varying vec2 vUv;
-    
-    vec2 scaleUV(vec2 uv,float scale) {
-      float center = 0.5;
-      return ((uv - center) * scale) + center;
-    }
-    
-    void main() {
-      vec3 color = texture2D(uTexture,scaleUV(vUv,uScale)).rgb;
-      gl_FragColor = vec4(color,uAlpha);
-    }
-    
-  </script>
+      uniform sampler2D uTexture;
+      uniform float uAlpha;
+      uniform float uScale;
+      
+      varying vec2 vUv;
+      
+      vec2 scaleUV(vec2 uv,float scale) {
+        float center = 0.5;
+        return ((uv - center) * scale) + center;
+      }
+      
+      void main() {
+        vec3 color = texture2D(uTexture,scaleUV(vUv,uScale)).rgb;
+        gl_FragColor = vec4(color,uAlpha);
+      }
+      
+    </script>
   <!-- - List Hover Shaders -->
   <!-- Slider Textures Shaders -->
   <script id="slider-textures-vs" type="x-shader/x-vertex">
-    varying vec2 vUv;
-    void main() {
-      vUv = uv;
-      gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
-    }
-  </script>
+      varying vec2 vUv;
+      void main() {
+        vUv = uv;
+        gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+      }
+    </script>
   <script id="slider-textures-horizontal-fs" type="x-shader/x-fragment">
-    varying vec2 vUv;
-    
-    uniform sampler2D texture;
-    uniform sampler2D texture2;
-    uniform sampler2D disp;
-    
-    uniform float dispFactor;
-    uniform float effectFactor;
-    
-    void main() {
-    
-      vec2 uv = vUv;
-    
-      vec4 disp = texture2D(disp, uv);
-    
-      vec2 distortedPosition = vec2(uv.x + dispFactor * (disp.r*effectFactor), uv.y);
-      vec2 distortedPosition2 = vec2(uv.x - (1.0 - dispFactor) * (disp.r*effectFactor), uv.y);
-    
-      vec4 _texture = texture2D(texture, distortedPosition);
-      vec4 _texture2 = texture2D(texture2, distortedPosition2);
-    
-      vec4 finalTexture = mix(_texture, _texture2, dispFactor);
-    
-      gl_FragColor = finalTexture;
-    
-    }
-  </script>
+      varying vec2 vUv;
+      
+      uniform sampler2D texture;
+      uniform sampler2D texture2;
+      uniform sampler2D disp;
+      
+      uniform float dispFactor;
+      uniform float effectFactor;
+      
+      void main() {
+      
+        vec2 uv = vUv;
+      
+        vec4 disp = texture2D(disp, uv);
+      
+        vec2 distortedPosition = vec2(uv.x + dispFactor * (disp.r*effectFactor), uv.y);
+        vec2 distortedPosition2 = vec2(uv.x - (1.0 - dispFactor) * (disp.r*effectFactor), uv.y);
+      
+        vec4 _texture = texture2D(texture, distortedPosition);
+        vec4 _texture2 = texture2D(texture2, distortedPosition2);
+      
+        vec4 finalTexture = mix(_texture, _texture2, dispFactor);
+      
+        gl_FragColor = finalTexture;
+      
+      }
+    </script>
   <script id="slider-textures-vertical-fs" type="x-shader/x-fragment">
-    varying vec2 vUv;
-    
-    uniform sampler2D texture;
-    uniform sampler2D texture2;
-    uniform sampler2D disp;
-    
-    uniform float dispFactor;
-    uniform float effectFactor;
-    
-    void main() {
-    
-      vec2 uv = vUv;
-    
-      vec4 disp = texture2D(disp, uv);
-    
-      vec2 distortedPosition = vec2(uv.x, uv.y - dispFactor * (disp.r*effectFactor));
-      vec2 distortedPosition2 = vec2(uv.x, uv.y + (1.0 - dispFactor) * (disp.r*effectFactor));
-    
-      vec4 _texture = texture2D(texture, distortedPosition);
-      vec4 _texture2 = texture2D(texture2, distortedPosition2);
-    
-      vec4 finalTexture = mix(_texture, _texture2, dispFactor);
-    
-      gl_FragColor = finalTexture;
-    
-    }
-    
-  </script>
+      varying vec2 vUv;
+      
+      uniform sampler2D texture;
+      uniform sampler2D texture2;
+      uniform sampler2D disp;
+      
+      uniform float dispFactor;
+      uniform float effectFactor;
+      
+      void main() {
+      
+        vec2 uv = vUv;
+      
+        vec4 disp = texture2D(disp, uv);
+      
+        vec2 distortedPosition = vec2(uv.x, uv.y - dispFactor * (disp.r*effectFactor));
+        vec2 distortedPosition2 = vec2(uv.x, uv.y + (1.0 - dispFactor) * (disp.r*effectFactor));
+      
+        vec4 _texture = texture2D(texture, distortedPosition);
+        vec4 _texture2 = texture2D(texture2, distortedPosition2);
+      
+        vec4 finalTexture = mix(_texture, _texture2, dispFactor);
+      
+        gl_FragColor = finalTexture;
+      
+      }
+      
+    </script>
   <!-- - Slider Textures Shaders -->
   <script src="js/navigation.js"></script>
   <!-- VENDOR SCRIPTS -->
